@@ -11,6 +11,7 @@ from kivy.uix.button import Button
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.label import Label 
 from kivy.graphics import Line
+from kivy.core.window import Window
 Builder.load_string("""
 #:import Window kivy.core.window.Window
 #:import get_color_from_hex kivy.utils.get_color_from_hex
@@ -134,6 +135,7 @@ class Navbar(FloatLayout):
 	def __init__(self, **kwargs):
 		super(Navbar, self).__init__(**kwargs)
 		Clock.schedule_once(self._initiate_navbar, 0)
+		Window.bind(on_resize= lambda instance, w,h :setattr(self.sidenav,'width', w/3)) #set sidenav responsive
 
 
 	def _initiate_navbar(self, *args):
@@ -153,7 +155,8 @@ class Navbar(FloatLayout):
 	
 
 	def open_navbar(self, button):
-		Animation(width = 300, d=.1).start(self.sidenav)
+		self.sidenav.width = 50
+		Animation(width = self.width/3, d=.1).start(self.sidenav)
 		self.add_widget(self.sidenav)
 		button.disabled = True
 
