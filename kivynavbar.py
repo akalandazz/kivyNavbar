@@ -32,7 +32,7 @@ Builder.load_string("""
 			size_hint_y:.10
 			HumbButton:
 				id:humb_bt
-				size_hint_x:.08
+				size_hint_x:.1 if Window.width < 500 else .055
 				on_press:root.open_navbar(self)
 			Label:
 				text:"NavigationDrawer"
