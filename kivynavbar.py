@@ -60,20 +60,34 @@ Builder.load_string("""
 		orientation:'vertical'
 		size_hint_x:.80
 		Label:
+			size_hint:.60,.30
+			pos_hint:{'center_x':.5,'center_y':.1}
 			canvas:
 				Ellipse:
-					source:"img4.jpg"
 					size:self.size
 					pos:self.pos
-				Line:
-					circle:self.x+self.width/2, self.y+self.height/2, self.height/1.99
-					width:1.2
-				Line:
-					rectangle:self.x,self.y,self.width, self.height
+				Ellipse:
+					source:"img4.jpg"
+					size:[self.width - 6, self.height - 6]
+					pos:[self.x+3,self.y+3]
 		Label:
-			text:'sadsads'
-		Label:
-			text:'sadsads'
+			text:'Choose'
+			size_hint_y:.05
+
+		Accordion:
+			orientation:'vertical'
+			AccordionItem:
+				title:'first'
+				Button:
+					text:'sdsads'
+			AccordionItem:
+				title:'second'
+				Button:
+					text:'sdsads'
+			AccordionItem:
+				title:'third'
+				Button:
+					text:'sdsads'
 	CloseButton:
 		id:close_button
 		size_hint:.09,.05
@@ -123,7 +137,7 @@ class SideNav(FloatLayout):
 	sidenav_color = props.StringProperty("#FF4141")
 
 
-	def close_sidebar(self, bu):
+	def close_sidebar(self, *args):
 		self.parent.ids.humb_bt.disabled = False
 		self.parent.remove_widget(self)
 
@@ -167,7 +181,8 @@ class Navbar(FloatLayout):
 		else:
 			self.mode = "dark"
 		self._initiate_navbar()
-	
+
+
 
 
 
